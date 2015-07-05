@@ -1,0 +1,69 @@
+<dom-module id="my-cupcakes">
+
+    <style>
+        paper-material{
+            margin-bottom: 25px;
+        }
+        paper-input{
+            font-size: 4em;
+            margin: 0 15px;
+        }
+        .content{
+            @apply(--layout-verticle);
+            @apply(--layout-flex-8);
+        }
+        .cupcake{
+            @apply(--layout-horizontal);
+        }
+        .cupcake-quantity{
+            margin: 0 auto;
+            width: 300px;
+            max-width: 100%;
+            text-align: center;
+        }
+        img{
+            @apply(--layout-flex-1);
+        }
+        h3, h4{
+            text-align: center;
+        }
+        p{
+            @apply(--layout-flex-8);
+            margin: 0 15px;
+        }
+    </style>
+
+    <template>
+        <h1>My Cupcakes</h1>
+        <template is="dom-repeat" items="{{cupcakes}}">
+            <paper-material elevation="1">
+                <section class="cupcake">
+                    <img src="{{item.img}}" width="200dp" height="200dp">
+                    <div class="content">
+                        <h3><a href="{{item.url}}">{{item.name}}</a></h3>
+                        <h4>{{item.price}}</h4>
+                        <section class="cupcake-quantity">
+                            <paper-fab icon="add">
+                            </paper-fab>
+                            <paper-input>0</paper-input>
+                            <paper-fab icon="remove">
+                            </paper-fab>
+                        </section>
+                    </div>
+                </section>
+            </paper-material>
+        </template>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'my-cupcakes',
+            ready: function(){
+                this.cupcakes = [
+                    {name: 'Vanilla',img:'images/vanilla.jpg',price:'$2.50',url:'/cupcake/vanilla'},
+                    {name: 'Chocolate',img:'images/chocolate.jpg',price:'$2.75',url:'/cupcake/chocolate'}
+                ];
+            }
+        });
+    </script>
+</dom-module>
